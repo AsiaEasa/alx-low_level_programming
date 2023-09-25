@@ -8,9 +8,8 @@
  * Return: pointer to the node we're looking for, or NULL
  */
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
-{int i;
+{unsigned int i;
 	listint_t *ptr = head;
-
 	for (i = 0; i <= index;)
 
 	{
@@ -19,7 +18,8 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 		ptr = ptr->next;
 		i++;
 	}
+	if (i == index)
+		return (ptr);
 
-	return (prr->n);
+
 }
-
