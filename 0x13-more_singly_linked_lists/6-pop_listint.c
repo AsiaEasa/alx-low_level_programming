@@ -8,8 +8,9 @@
  * or 0 if the list is empty
  */
 int pop_listint(listint_t **head)
-{int x ;
+{int x;
 	listint_t *ptr = *head;
+
 	if (!head || !*head)
 		return (0);
 
