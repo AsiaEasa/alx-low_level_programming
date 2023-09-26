@@ -10,11 +10,14 @@ size_t free_listint_safe(listint_t **h)
 	size_t num = 0;
 	int tmp;
 	listint_t *ptr;
+
 	if (!h || !*h)
 		return (0);
+
 	for (; *h; i++)
 	{
 		tmp = *h - (*h)->next;
+
 		if (tmp > 0)
 		{
 			ptr = (*h)->next;
@@ -22,6 +25,7 @@ size_t free_listint_safe(listint_t **h)
 			*h = ptr;
 			num++;
 		}
+
 		else
 		{
 			free(*h);
