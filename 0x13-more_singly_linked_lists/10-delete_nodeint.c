@@ -26,13 +26,14 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	{
 		for (; i < index - 1; i++)
 		{
-			if (!ptr && !(i < index - 1))
+			if (!ptr && !(ptr->next))
 				return (-1);
 			ptr = ptr->next;
 		}
-		tmp = ptr->next;
-		ptr->next = tmp->next;
-		free(tmp);
+		tmp = ptr;
+		ptr = ptr->next;
+		tmp->next = ptr->next;
+		free(ptr);
 		return (1);
 	}
 }
