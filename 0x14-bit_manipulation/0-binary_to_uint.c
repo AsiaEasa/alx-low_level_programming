@@ -12,7 +12,8 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-	int i, num, rem, x, base = 1, int_num;
+	int i, num, rem, x, base = 1;
+	int int_num = 0;
 
 	x = strlen(b);
 	num = atoi(b);
@@ -20,7 +21,7 @@ unsigned int binary_to_uint(const char *b)
 	if (!b)
 		return (0);
 
-	for (i = x - 1; x >= 0; i--)
+	for (i = x - 1; i >= 0; i--)
 	{rem = num % 10;
 		int_num = int_num + rem * base;
 		num = num / 10;
