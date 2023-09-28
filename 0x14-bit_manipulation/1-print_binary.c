@@ -6,15 +6,17 @@
  */
 
 void print_binary(unsigned long int n)
-{int i;
+{int i, x __attribute__((unused));
 
 	for (i = 31; i >= 0; i--)
 	{
 		int x = (1 << i);
 
 		if (n & x)
-			printf("1");
-		else
-			printf("0");
+		{
+			_putchar('1');
+			x++; }
+		else if (x)
+			_putchar('0');
 	}
 }
