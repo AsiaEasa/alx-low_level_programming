@@ -17,3 +17,4 @@ void print_binary(unsigned long int n)
 		else
 			printf("0");
 	}
+}
