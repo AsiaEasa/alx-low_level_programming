@@ -16,5 +16,5 @@ int get_bit(unsigned long int n, unsigned int index)
 		a[i] = n % 2;
 		n = n / 2;
 	}
-	return(a[index]);
+	return (a[index]);
 }
