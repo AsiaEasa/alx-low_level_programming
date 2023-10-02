@@ -4,7 +4,7 @@
 #include <fcntl.h>
 
 #define SIZE 1024
-/*
+/**
  * ex_error - It prints the error statement and executes exit.
  * @Mes: The error message to display.
  * @e_exit: The exit code to use when exiting the program.
