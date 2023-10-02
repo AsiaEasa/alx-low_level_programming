@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-
+#include <sys/stat.h>
+#include "main.h"
 #define SIZE 1024
+#define  per (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 /**
  * ex_error - It prints the error statement and executes exit.
  * @Mes: The error message to display.
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
 
 	if (ptr_from == -1)
 		ex_error("Can't read from file", 98);
-	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, per);
 
 	if (ptr_to == -1)
 	{
@@ -63,17 +65,14 @@ int main(int argc, char *argv[])
 		{
 			close(ptr_from);
 			close(ptr_to);
-			ex_error("Can't write to file", 99);
-		}}
+			ex_error("Can't write to file", 99); }}
 
 	if (r == -1)
 	{
 		close(ptr_from);
 		close(ptr_to);
-		ex_error("Can't read from file", 98);
-	}
+		ex_error("Can't read from file", 98); }
 
 	if (close(ptr_from) == -1 || close(ptr_to) == -1)
 		ex_error("Can't close ptr", 100);
-	return (0);
-}
+	return (0); }
