@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 
 	r = read(ptr_from, buf, SIZE);
 	w = write(ptr_to, buf, r);
-	if (w != r)
+	if (w != r || w == -1)
 	{
 		close(ptr_from);
 		close(ptr_to);
