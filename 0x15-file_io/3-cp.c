@@ -4,9 +4,19 @@
 #include <fcntl.h>
 
 #define SIZE 1024
+/*
+ * ex_error - It prints the error statement and executes exit.
+ * @Mes: The error message to display.
+ * @e_exit: The exit code to use when exiting the program.
+ */
+void ex_error(const char *Mes, int e_exit)
+{
+	dprintf(STDERR_FILENO, "Error: %s\n", Mes);
+	exit(e_exit);
+}
 
 /**
- * copy_file - Copy the content of one file to another.
+ * main - Copy the content of one file to another.
  *
  * @argc: The number of command-line arguments.
  * @argv: An array of command-line argument strings.
@@ -24,11 +34,6 @@
  *  - 99: Failed to write to the destination file.
  *  - 100: Failed to close a file descriptor.
  */
-void ex_error(const char *Mes, int _exit)
-{
-	dprintf(STDERR_FILENO, "Error: %s\n", Mes);
-	exit(_exit);
-}
 
 int main(int argc, char *argv[])
 {
