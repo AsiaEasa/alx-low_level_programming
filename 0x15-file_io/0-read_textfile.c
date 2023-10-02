@@ -36,10 +36,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		if (r == 0)
 			break;
 
-		w = write(STDOUT_FILENO, s, r)
+		w = write(STDOUT_FILENO, s, r);
 
-			if (r != w)
-				break;
+		if (r != w)
+			break;
 		total_bytes += w;
 
 		letters -= w;
