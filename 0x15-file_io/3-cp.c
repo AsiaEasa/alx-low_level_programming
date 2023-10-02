@@ -36,24 +36,27 @@ void ex_error(const char *Mes, int e_exit)
  */
 
 int main(int argc, char *argv[])
-{
+{const char *file_from;
+	const char *file_to;
+	int ptr_from, ptr_to;
+	char buf[SIZE];
+	ssize_t r, w;
+
 	if (argc != 3)
 		ex_error("Usage: cp file_from file_to", 97);
-	const char *file_from = argv[1];
-	const char *file_to = argv[2];
-	int ptr_from = open(file_from, O_RDONLY);
+	file_from = argv[1];
+	file_to = argv[2];
+	ptr_from = open(file_from, O_RDONLY);
 
 	if (ptr_from == -1)
 		ex_error("Can't read from file", 98);
-	int ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	if (ptr_to == -1)
 	{
 		close(ptr_from);
 		ex_error("Can't write to file", 99);
 	}
-	char buf[SIZE];
-	ssize_t r, w;
 
 	r = read(ptr_from, buf, SIZE);
 	w = write(ptr_to, buf, r);
