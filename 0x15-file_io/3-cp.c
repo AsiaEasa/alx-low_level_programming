@@ -55,10 +55,8 @@ int main(int argc, char *argv[])
 	if (ptr_to == -1)
 	{
 		close(ptr_from);
-		ex_error("Can't write to file", 99);
-	}
-
-	while((r = read(ptr_from, buf, SIZE))>0)
+		ex_error("Can't write to file", 99); }
+	while ((r = read(ptr_from, buf, SIZE)) > 0)
 	{
 		w = write(ptr_to, buf, r);
 		if (w != r || w == -1)
