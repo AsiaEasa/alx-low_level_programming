@@ -74,5 +74,5 @@ int main(int argc, char *argv[])
 		ex_error("Can't read from file", 98); }
 
 	if (close(ptr_from) == -1 || close(ptr_to) == -1)
-		ex_error("Can't close ptr", 100);
+		ex_error("Can't close fd", 100);
 	return (0); }
