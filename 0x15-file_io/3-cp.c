@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 			exit(98); }
 		w = write(ptr_to, buf, r);
 		if (ptr_to == -1 || w == -1)
-		{ dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+		{ dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99); }
 		r = read(ptr_from, buf, SIZE);
 		ptr_to = open(file_to, O_WRONLY | O_APPEND);
