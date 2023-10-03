@@ -38,42 +38,34 @@ void ex_error(const char *Mes, int e_exit)
  */
 
 int main(int argc, char *argv[])
-{const char *file_from;
-	const char *file_to;
+{const char *file_from = argv[1];
+	const char *file_to = argv[2];
 	int ptr_from, ptr_to;
 	char buf[SIZE];
 	ssize_t r, w;
 
 	if (argc != 3)
-		{ dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
-			exit(97); }
-	file_from = argv[1];
-	file_to = argv[2];
+	{ dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		exit(97); }
 	ptr_from = open(file_from, O_RDONLY);
-
-	if (ptr_from == -1)
-		ex_error("Can't read from file", 98);
-	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, per);
-
-	if (ptr_to == -1)
-	{
-		close(ptr_from);
-		ex_error("Can't write to file", 99); }
-	while ((r = read(ptr_from, buf, SIZE)) > 0)
-	{
+	r = read(ptr_from, buf, SIZE);
+	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	do {
+		if (ptr_from == -1 || r == -1)
+		{ dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			exit(98); }
 		w = write(ptr_to, buf, r);
-		if (w != r || w == -1)
-		{
-			close(ptr_from);
-			close(ptr_to);
-			ex_error("Can't write to ", 99); }}
+		if (ptr_to == -1 || w == -1)
+		{ dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+			exit(99); }
+		r = read(ptr_from, buf, SIZE);
+		ptr_to = open(file_to, O_WRONLY | O_APPEND);
+	} while (r > 0);
 
-	if (r == -1)
-	{
-		close(ptr_from);
-		close(ptr_to);
-		ex_error("Can't read from file", 98); }
-
-	if (close(ptr_from) == -1 || close(ptr_to) == -1)
-	ex_error("Can't close fd ", 100);
+	if (close(ptr_from) == -1)
+	{dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ptr_from);
+		exit(100); }
+	if (close(ptr_to) == -1)
+	{dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ptr_to);
+		exit(100); }
 	return (0); }
