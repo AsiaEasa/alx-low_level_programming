@@ -50,8 +50,12 @@ int main(int argc, char *argv[])
 	ptr_from = open(file_from, O_RDONLY);
 	r = read(ptr_from, buf, SIZE);
 	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+
+	if (ptr_from == -1)
+	{ dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98); }
 	do {
-		if (ptr_from == -1 || r == -1)
+		if (r == -1)
 		{ dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 			exit(98); }
 		w = write(ptr_to, buf, r);
