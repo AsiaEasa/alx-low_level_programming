@@ -13,7 +13,7 @@
  */
 void ex_error(const char *Mes, int e_exit)
 {
-	dprintf(STDERR_FILENO, "Error: %s\n", Mes);
+	dprintf(STDERR_FILENO, "%s\n", Mes);
 	exit(e_exit);
 }
 
