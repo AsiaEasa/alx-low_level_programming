@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		{ dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99); }
 		r = read(ptr_from, buf, SIZE);
-		ptr_to = open(file_to, O_WRONLY | O_APPEND);
+		ptr_to = open(file_to, O_WRONLY | O_APPEND, 0664);
 	} while (r > 0);
 
 	if (close(ptr_from) == -1)
