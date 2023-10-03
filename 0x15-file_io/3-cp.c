@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include "main.h"
 #define SIZE 1024
+#define  per (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 /**
  * main - Copy the content of one file to another.
  *
@@ -37,7 +38,7 @@ int main(int argc, char *argv[])
 		exit(97); }
 	ptr_from = open(file_from, O_RDONLY);
 	r = read(ptr_from, buf, SIZE);
-	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	ptr_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, per);
 
 	if (ptr_from == -1)
 	{ dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
@@ -51,7 +52,7 @@ int main(int argc, char *argv[])
 		{ dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99); }
 		r = read(ptr_from, buf, SIZE);
-		ptr_to = open(file_to, O_WRONLY | O_APPEND, 0664);
+		ptr_to = open(file_to, O_WRONLY | O_APPEND);
 	} while (r > 0);
 
 	if (close(ptr_from) == -1)
