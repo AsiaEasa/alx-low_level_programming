@@ -5,18 +5,6 @@
 #include <sys/stat.h>
 #include "main.h"
 #define SIZE 1024
-#define  per (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
-/**
- * ex_error - It prints the error statement and executes exit.
- * @Mes: The error message to display.
- * @e_exit: The exit code to use when exiting the program.
- */
-void ex_error(const char *Mes, int e_exit)
-{
-	dprintf(STDERR_FILENO, "Error: %s\n", Mes);
-	exit(e_exit);
-}
-
 /**
  * main - Copy the content of one file to another.
  *
