@@ -13,7 +13,7 @@
  */
 void ex_error(const char *Mes, int e_exit)
 {
-	dprintf(STDERR_FILENO, "%s\n", Mes);
+	dprintf(STDERR_FILENO, "Error: %s\n", Mes);
 	exit(e_exit);
 }
 
@@ -45,7 +45,8 @@ int main(int argc, char *argv[])
 	ssize_t r, w;
 
 	if (argc != 3)
-		ex_error("Usage: cp file_from file_to", 97);
+		{ dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+			exit(97); }
 	file_from = argv[1];
 	file_to = argv[2];
 	ptr_from = open(file_from, O_RDONLY);
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
 		{
 			close(ptr_from);
 			close(ptr_to);
-			ex_error("Can't write to file", 99); }}
+			ex_error("Can't write to ", 99); }}
 
 	if (r == -1)
 	{
@@ -74,6 +75,5 @@ int main(int argc, char *argv[])
 		ex_error("Can't read from file", 98); }
 
 	if (close(ptr_from) == -1 || close(ptr_to) == -1)
-	{ dprintf(STDERR_FILENO, "%s\n", "Error: Can't close fd ");
-		exit(100); }
+	ex_error("Error: Can't close fd ", 100);
 	return (0); }
