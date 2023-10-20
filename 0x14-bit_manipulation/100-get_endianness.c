@@ -6,5 +6,6 @@
  */
 int get_endianness(void)
 {
-	return ;
+	unsigned long int l = 1;
+	return (*(char *)gl);
 }
