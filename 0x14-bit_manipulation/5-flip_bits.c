@@ -10,27 +10,16 @@
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int Result = n ^ m;
+	int i, count = 0;
+	unsigned long int current;
+	unsigned long int exclusive = n ^ m;
 
-	return (countSetBits(Result));
-}
-
-/**
- * countSetBits - counts the number of set bits (1s)
- * @num: the integer for which set bits are counted
- *
- * Return:
- *   The count of set bits in the binary representation of 'num'.
- */
-
-int countSetBits(int num)
-{
-	int count = 0;
-
-	while (num)
+	for (i = 63; i >= 0; i--)
 	{
-		count += num & 1;
-		num >>= 1;
+		current = exclusive >> i;
+		if (current & 1)
+			count++;
 	}
+
 	return (count);
 }
