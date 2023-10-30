@@ -5,12 +5,22 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+void close_elf(int elf);
 void check_elf(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
-
+/**
+ * close_elf - Closes an ELF file.
+ * @elf: The file descriptor of the ELF file.
+ *
+ * Description: If the file cannot be closed - exit code 98.
+ */
+void close_elf(int elf)
+{
+	if (close(elf) == -1)
+		exit(9);
+}
 /**
  * check_elf - Checks if a file is an ELF file.
  * @e_ident: A pointer to an array containing the ELF magic numbers.
