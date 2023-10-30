@@ -35,7 +35,7 @@ void check_elf(unsigned char *e_ident)
 				e_ident[index] != 'F')
 
 		{
-			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+			dprintf(STDERR_FILENO, "Not an ELF file\n");
 			exit(98);
 		}
 	}
@@ -54,12 +54,8 @@ void print_magic(unsigned char *e_ident)
 	printf(" Magic: ");
 
 	for (index = 0; index < EI_NIDENT; index++)
-	{
 		printf("%02x", e_ident[index]);
 
-		if (index == EI_NIDENT - 1)
-			printf("\n");
-	}
 }
 
 /**
