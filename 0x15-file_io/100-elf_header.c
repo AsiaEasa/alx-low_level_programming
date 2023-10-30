@@ -89,7 +89,6 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	r = read(o, header, sizeof(Elf64_Ehdr));
 
 	check_elf(header->e_ident);
-	print_type(header->e_type, header->e_ident);
 
 	free(header);
 	close_elf(o);
