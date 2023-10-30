@@ -85,8 +85,6 @@ void print_data(unsigned char *e_ident)
 	{
 		case ELFDATANONE:
 			break;
-		default:
-			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
 }
 
@@ -104,9 +102,6 @@ void print_version(unsigned char *e_ident)
 		case EV_CURRENT:
 			printf(" (current)\n");
 			break;
-		default:
-			printf("\n");
-			break;
 	}
 }
 
@@ -122,18 +117,6 @@ void print_osabi(unsigned char *e_ident)
 	{
 		case ELFOSABI_NONE:
 			printf("UNIX - System V\n");
-			break;
-		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD\n");
-			break;
-		case ELFOSABI_SOLARIS:
-			printf("UNIX - Solaris\n");
-			break;
-		case ELFOSABI_FREEBSD:
-			printf("UNIX - FreeBSD\n");
-			break;
-		case ELFOSABI_ARM:
-			printf("ARM\n");
 			break;
 		default:
 			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
