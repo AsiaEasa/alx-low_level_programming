@@ -7,8 +7,6 @@
 #include <stdlib.h>
 void close_elf(int elf);
 void check_elf(unsigned char *e_ident);
-void print_magic(unsigned char *e_ident);
-void print_class(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 /**
  * close_elf - Closes an ELF file.
@@ -45,37 +43,6 @@ void check_elf(unsigned char *e_ident)
 	}
 }
 
-/**
- * print_magic - Prints the magic numbers of an ELF header.
- * @e_ident: A pointer to an array containing the ELF magic numbers.
- *
- * Description: Magic numbers are separated by spaces.
- */
-void print_magic(unsigned char *e_ident)
-{
-	int index;
-
-	printf(" Magic: ");
-
-	for (index = 0; index < EI_NIDENT; index++)
-		printf("%02x", e_ident[index]);
-
-}
-
-/**
- * print_class - Prints the class of an ELF header.
- * @e_ident: A pointer to an array containing the ELF class.
- */
-void print_class(unsigned char *e_ident)
-{
-	printf(" Class: ");
-
-	switch (e_ident[EI_CLASS])
-	{
-		case ELFCLASSNONE:
-			break;
-	}
-}
 
 /**
  * print_type - Prints the type of an ELF header.
