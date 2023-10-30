@@ -7,6 +7,9 @@
 #include <stdlib.h>
 void close_elf(int elf);
 void check_elf(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
 /**
  * close_elf - Closes an ELF file.
  * @elf: The file descriptor of the ELF file.
@@ -41,7 +44,60 @@ void check_elf(unsigned char *e_ident)
 		}
 	}
 }
+
 /**
+ * print_magic - Prints the magic numbers of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF magic numbers.
+ *
+ * Description: Magic numbers are separated by spaces.
+ */
+void print_magic(unsigned char *e_ident)
+{
+	int index;
+
+	printf(" Magic: ");
+
+	for (index = 0; index < EI_NIDENT; index++)
+		printf("%02x", e_ident[index]);
+
+}
+
+/**
+ * print_class - Prints the class of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF class.
+ */
+void print_class(unsigned char *e_ident)
+{
+	printf(" Class: ");
+
+	switch (e_ident[EI_CLASS])
+	{
+		case ELFCLASSNONE:
+			break;
+	}
+}
+
+/**
+ * print_type - Prints the type of an ELF header.
+ * @e_type: The ELF type.
+ * @e_ident: A pointer to an array containing the ELF class.
+ */
+void print_type(unsigned int e_type, unsigned char *e_ident)
+{
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		e_type >>= 8;
+
+	printf(" Type: ");
+
+	switch (e_type)
+	{
+		case ET_NONE:
+			printf("NONE (None)\n");
+			break;
+	}
+}
+/**
+ * main - Displays the information contained in the
  * ELF header at the start of an ELF file.
  * @argc: The number of arguments supplied to the program.
  * @argv: An array of pointers to the arguments.
@@ -67,6 +123,8 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	r = read(o, header, sizeof(Elf64_Ehdr));
 
 	check_elf(header->e_ident);
+	printf("ELF Header:\n");
+	print_type(header->e_type, header->e_ident);
 
 	free(header);
 	close_elf(o);
