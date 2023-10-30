@@ -63,21 +63,6 @@ void print_magic(unsigned char *e_ident)
 }
 
 /**
- * print_class - Prints the class of an ELF header.
- * @e_ident: A pointer to an array containing the ELF class.
- */
-void print_class(unsigned char *e_ident)
-{
-	printf(" Class: ");
-
-	switch (e_ident[EI_CLASS])
-	{
-		case ELFCLASSNONE:
-			break;
-	}
-}
-
-/**
  * print_type - Prints the type of an ELF header.
  * @e_type: The ELF type.
  * @e_ident: A pointer to an array containing the ELF class.
@@ -124,7 +109,6 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	check_elf(header->e_ident);
 	printf("ELF Header:\n");
-	print_magic(header->e_ident);
 	print_type(header->e_type, header->e_ident);
 
 	free(header);
