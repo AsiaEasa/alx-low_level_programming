@@ -118,8 +118,6 @@ void print_osabi(unsigned char *e_ident)
 		case ELFOSABI_NONE:
 			printf("UNIX - System V\n");
 			break;
-		default:
-			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
 }
 
@@ -149,9 +147,6 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 	{
 		case ET_NONE:
 			printf("NONE (None)\n");
-			break;
-		case ET_DYN:
-			printf("DYN (Shared object file)\n");
 			break;
 	}
 }
@@ -186,11 +181,7 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 void close_elf(int elf)
 {
 	if (close(elf) == -1)
-	{
-		dprintf(STDERR_FILENO,
-				"Error: Can't close fd %d\n", elf);
 		exit(9);
-	}
 }
 
 /**
