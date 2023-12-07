@@ -7,14 +7,16 @@
  *
  * Return: size_t
  */
-size_t print_dlistint(const dlistint_t *h)
-{
-	unsigned int count = 0;
+size_t dlistint_len(const dlistint_t *h)
 
-	while (h)
+{
+	int i = 0;
+
+	for (; h ;)
 	{
+		i++;
 		h = h->next;
-		count++;
 	}
-	return (count);
+
+	return (i);
 }
