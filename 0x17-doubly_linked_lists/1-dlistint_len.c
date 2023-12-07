@@ -1,11 +1,10 @@
 #include "lists.h"
 
 /**
- * print_dlistint - Prints all elements of ll
+ * dlistint_len - returns the number of elements in a linked lists
+ * @h: linked list of type listint_t to traverse
  *
- * @h: Head dlistint_t
- *
- * Return: size_t
+ * Return: number of nodes
  */
 size_t dlistint_len(const dlistint_t *h)
 
