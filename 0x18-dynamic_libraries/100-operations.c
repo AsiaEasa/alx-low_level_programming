@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int add(int a, int b)
 {
 	int c;
@@ -20,7 +22,7 @@ int mul(int a, int b)
 int div(int a, int b)
 {
 	if (b == 0) 
-	{ print("Erorr: Division by zero\n");
+	{ printf("Erorr: Division by zero\n");
 		return (0); }
 	return (a / b);
 }
@@ -28,7 +30,7 @@ int div(int a, int b)
 int mod(int a, int b)
 {
 	if (b == 0)
-	{ print("Erorr: Division by zero\n");
+	{ printf("Erorr: Division by zero\n");
 		return (0); }
 	return (a % b);
 }
