@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 
 /**
- * make_newhNode - create a new hash node
+ * make_new_h_Node - create a new hash node
  *
  * @key : key for the node
  *
