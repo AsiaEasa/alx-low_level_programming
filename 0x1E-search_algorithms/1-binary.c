@@ -12,7 +12,7 @@ int binary_search(int *array, size_t size, int value)
 	size_t L = 0;
 	size_t i, M, R;
 
-	M = size - 1;
+	R = size - 1;
 
 	if (!array || !size)
 		return (-1);
@@ -23,9 +23,10 @@ int binary_search(int *array, size_t size, int value)
 		printf("Searching in array: ");
 		while (i <= R)
 		{
-			printf("%d", array[i]);
-			if (i != R)
-				printf(", ");
+			if (i == R)
+				printf("%d\n", array[i]);
+			else
+				printf("%d, ", array[i]);
 			i++;
 		}
 
