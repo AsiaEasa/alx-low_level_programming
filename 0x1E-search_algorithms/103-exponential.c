@@ -9,8 +9,8 @@
  */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t i , mid, bound, low, high;
-	if (array == NULL || size == 0)
+	size_t i , M, B, L, H;
+	if (!array || size == 0)
 		return (-1);
 
 	if (array[0] == value)
@@ -19,37 +19,37 @@ int exponential_search(int *array, size_t size, int value)
 		return (0);
 	}
 
-	bound = 1;
-	while (bound < size && array[bound] <= value)
+	B = 1;
+	while (B < size && array[B] <= value)
 	{
-		printf("Value checked array[%lu] = [%d]\n", bound, array[bound]);
-		bound *= 2;
+		printf("Value checked array[%lu] = [%d]\n", B, array[B]);
+		B *= 2;
 	}
 
-	low = bound / 2;
-	high = (bound < size) ? bound : size - 1;
+	L = B / 2;
+	H = (B < size) ? B : size - 1;
 
-	printf("Value found between indexes [%lu] and [%lu]\n", low, high);
+	printf("Value found between indexes [%lu] and [%lu]\n", L, H);
 
-	while (low <= high)
+	while (L <= H)
 	{
-		mid = low + (high - low) / 2;
+		M = L + (H - L) / 2;
 		printf("Searching in array: ");
-		for (i = low; i <= high; ++i)
+		for (i = L; i <= H; ++i)
 		{
 			printf("%d", array[i]);
-			if (i < high)
+			if (i < H)
 				printf(", ");
 		}
 		printf("\n");
 
-		if (array[mid] == value)
-			return (int)mid;
+		if (array[M] == value)
+			return ((int)M);
 
-		if (array[mid] < value)
-			low = mid + 1;
+		if (array[M] < value)
+			L = M + 1;
 		else
-			high = mid - 1;
+			H = M - 1;
 	}
 
 	return (-1);
